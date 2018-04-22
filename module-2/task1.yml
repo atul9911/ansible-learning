@@ -1,5 +1,4 @@
 ---
-# - name: 'iquippo-build-creation'
 - hosts: "{{ HOST }}"
   become: true
   become_user: "{{ become_user }}"
@@ -7,11 +6,13 @@
   gather_facts: true
   
   tasks:
-    - stat:
-        path: "{{ app_path }}/{{ app_dir }}"
-      register: exist
+    - name: install mysql-server
+      apt: name=mysql-server state=present update_cache=yes
 
-    - name: create "{{ app_path }}/{{ app_dir }}" directory
-      file: dest={{ app_path }}/{{ app_dir }} state=directory 
-      when: exist.stat.exists != True
+    - name: install ansible dependencies
+      apt: name=python-mysqldb state=present
+
+    - name: Ensure mysql is running 
+      service: name=mysql state=started
+
 

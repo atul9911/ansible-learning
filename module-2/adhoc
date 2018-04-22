@@ -1,0 +1,10 @@
+ ansible all -m ping
+
+ ansible all -m ping -u bruce --sudo
+
+ ansible atlanta -a "/sbin/reboot" -f 10
+
+ 
+
+ansible webservers -m git -a "repo=https://foo.example.org/repo.git dest=/srv/myapp version=HEAD"
+
