@@ -1,0 +1,10 @@
+test-server ansible_ssh_host=10.0.0.1 ansible_connection=ssh 
+
+
+[test-dev]
+test-dev ansible_ssh_host=172.31.100.25 ansible_connection=ssh ansible_user=ec2-user
+
+
+
+
+
